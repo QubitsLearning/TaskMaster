@@ -1,0 +1,171 @@
+<html>
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Task Master</title>
+  <!--Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container-fluid my-3">
+    <!--Heading -->
+    <div class="row">
+      <div class="col-sm-1 text-center">
+        <img src="images/logo.jpg" width="60px" height="50px" alt="logo">
+      </div>
+      <div class="col-sm-11 text-center">
+        <h1> Task Master </h1>
+      </div>
+    </div>
+
+    <!--Navigation bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item h5">
+              <a class="nav-link " href="#" data-bs-toggle="collapse" data-bs-target="#dashboard"
+                id="dashboardLink">Dashboard</a>
+            </li>
+            <li class="nav-item h5">
+              <a class="nav-link " href="#" data-bs-toggle="collapse" data-bs-target="#completedTasks"
+                id="completedTasksLink">Completed Tasks</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Filter menu-->
+    <div class="row mt-2">
+      <div class="col text-end">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="sortDropDownButton"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            Sort By Date
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="sortDropDownButton">
+            <li><a class="dropdown-item" href="#" id="ascending">Ascending</a></li>
+            <li><a class="dropdown-item" href="#" id="descending">Descending</a></li>
+            <li><a class="dropdown-item" href="#" id="removeSort">Remove Sort</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Container for displaying dashboard table-->
+    <div class="collapse show" id="dashboard">
+      <!-- Responsive  table to display new task data-->
+      <div class="table-responsive">
+        <table class="table table-striped mt-2 dashBoardTable">
+
+        </table>
+      </div>
+    </div>
+
+    <!-- Container for displaying completed tasks table-->
+    <div class="collapse" id="completedTasks">
+      <!-- Responsive table to display completed task data-->
+      <div class="table-responsive">
+        <table class="table table-striped  mt-2 completedTasksTable">
+
+        </table>
+      </div>
+    </div>
+
+
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary rounded-circle bottom-0 end-0 mb-3 me-3 position-fixed"
+      data-bs-toggle="modal" data-bs-target="#staticBackdrop" data-bs-toggle="tooltip" title="Add task">
+      +
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">New Task</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeButton1"></button>
+          </div>
+          <div class="modal-body">
+            <form id="modalForm">
+              <div class="row mb-2">
+                <label for="taskName" class="col-4 col-form-label">Task Name</label>
+                <div class="col">
+                  <input type="text" class="form-control" id="taskName">
+                </div>
+              </div>
+              <div class="row mb-2">
+                <label for="description" class="col-4 col-form-label">Description</label>
+                <div class="col">
+                  <input type="text" class="form-control" id="description">
+                </div>
+              </div>
+
+              <div class="row mb-2">
+                <label for="categoryDropDown" class="col-4 col-form-label">Category</label>
+                <div class="col">
+                  <select class="form-select" aria-label="Category drop down" id="categoryDropDown">
+                    <option>Personal</option>
+                    <option>Work</option>
+                    <option>Family</option>
+                    <option>Shopping</option>
+                    <option>Travel</option>
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-2">
+                <label for="priorityDropDown" class="col-4 col-form-label">Priority</label>
+                <div class="col">
+                  <select class="form-select" aria-label="Priority drop down" id="priorityDropDown">
+                    <option>Low</option>
+                    <option>Normal</option>
+                    <option>High</option>
+
+                  </select>
+                </div>
+              </div>
+              <div class="row mb-3">
+                <label for="dueDate" class="col-4 col-form-label">Due Date</label>
+                <div class="col">
+                  <input type="date" class="form-control" id="dueDate">
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="text-danger error"> </div>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="closeButton2">Close</button>
+
+            <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="saveButton" disabled>Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--Bootstrap JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+  <!--SQL JavaScript -->
+  <script src="https://cdn.jsdelivr.net/npm/localforage@1.10.0/dist/localforage.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sql.js@1.8.0/dist/sql-wasm.min.js"></script>
+  <!--Logic JavaScript-->
+  <script src="javascript/boilerplate.js"></script>
+  <script src="javascript/indexPage.js"></script>
+</body>
+
+</html>
